@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+<h3>History of calculate</h3>
+<table>
+    <tr>
+        <th> Number_1</th>
+        <th> Operation</th>
+        <th> Number_2</th>
+        <th></th>
+        <th> Result</th>
+    </tr>
+    <tr th:each="e: ${entities}">
+        <td align="center" th:text="${e.firstNumber}"></td>
+        <td align="center" th:text="${e.operation}"></td>
+        <td align="center" th:text="${e.secondNumber}"></td>
+        <td align="center"> =</td>
+        <td align="center" th:text="${e.result}"></td>
+    </tr>
+</table>
+<br>
+<br>
+<h3>Calculate now</h3>
+<form action="/calculator" method="post">
+    Number_1: <input type="number" name="firstNumber"><br/>
+    Number_2: <input type="number" name="secondNumber"><br/>
+    Operation: <label><input type="radio" name="operation" value="+"> Sum(+) </label>
+    <label><input type="radio" name="operation" value="-"> Subtraction(-) </label>
+    <label><input type="radio" name="operation" value="*"> Multiply(*) </label>
+    <label><input type="radio" name="operation" value="/"> Division(/) </label>
+    <br>
+    <br>
+    <button type="submit">Calculate</button>
+</form>
+
+<h3>Result: <span th:text="${result}"></span></h3>
+</body>
+</html>
